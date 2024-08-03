@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defence Research & Innovation Quiz Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+        }
+        button {
+            margin: 5px 0;
+            padding: 10px;
+            cursor: pointer;
+        }
+        #result, #explanation {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <h1>Defence Research & Innovation Quiz</h1>
+    <div id="quiz"></div>
+    <div id="explanation"></div>
+    <div id="result"></div>
+    <button id="next" style="display:none;">Next Question</button>
+    <button id="retry" style="display:none;">Retry Quiz</button>
+
+    <script>
+        const quizData = [
+    {
+        question: "What is the main aim of the lecture presentation?",
+        options: ["To discuss military strategies", "To explore economic policies", "To discuss implementation and management of research innovation and technology development for enhanced self-reliance", "To analyze global defence trends"],
+        correct: 2,
+        explanation: "The document clearly states that the aim is to discuss the implementation and management of research innovation and technology development for enhanced self-reliance in support of the Armed Forces of Nigeria."
+    },
+    {
+        question: "How is research defined in the document?",
+        options: ["As a process of product development", "As the creation of new knowledge or use of existing knowledge in new and creative ways", "As the implementation of military strategies", "As the commercialization of inventions"],
+        correct: 1,
+        explanation: "The document defines research as the creation of new knowledge and/or the use of existing knowledge in a new and creative way to generate new concepts, methodologies, inventions and understandings."
+    },
+    {
+        question: "What is innovation according to the presentation?",
+        options: ["The process of basic research", "The development of new military equipment", "The successful exploitation of new ideas", "The process of reverse engineering"],
+        correct: 2,
+        explanation: "The document defines innovation as the successful exploitation of new ideas or ones that are adopted from other sectors or organizations."
+    },
+    {
+        question: "How is Technology Development defined?",
+        options: ["As a process of theoretical research", "As the application of new knowledge related to technology with visible practical results", "As the process of funding research projects", "As the commercialization of products"],
+        correct: 1,
+        explanation: "The document defines Technology Development as a process in which the application of new knowledge related to technology has visible practical results."
+    },
+    {
+        question: "What are the three main types of research classification by enquiry mode?",
+        options: ["Basic, Applied, Development", "Qualitative, Quantitative, Mixed Method", "Exploratory, Descriptive, Explanatory", "Pure, Practical, Theoretical"],
+        correct: 1,
+        explanation: "The document classifies research types by enquiry mode into Qualitative, Quantitative, and Mixed Method."
+    },
+    {
+        question: "Which of the following is NOT a classification of research types by objectives?",
+        options: ["Exploratory", "Descriptive", "Explanatory", "Quantitative"],
+        correct: 3,
+        explanation: "The document lists Exploratory, Descriptive, and Explanatory as classifications of research types by objectives. Quantitative is a classification by enquiry mode, not by objectives."
+    },
+    {
+        question: "What is the purpose of exploratory research?",
+        options: ["To define characteristics of a population", "To establish cause-and-effect relationships", "To investigate a problem that is not clearly defined", "To test hypotheses"],
+        correct: 2,
+        explanation: "The document states that exploratory research is conducted to investigate a problem that is not clearly defined, has been under-investigated, or is otherwise poorly understood."
+    },
+    {
+        question: "What are the stages of Research and Development according to the document?",
+        options: ["Planning, Execution, Evaluation", "Basic research, Applied research, Development", "Conceptualization, Implementation, Commercialization", "Design, Testing, Production"],
+        correct: 1,
+        explanation: "The document outlines the stages of Research and Development as Basic research, Applied research, and Development."
+    },
+    {
+        question: "What is the first step in the design process?",
+        options: ["Conceptual design", "Preliminary design", "Need analysis / Problem definition", "Detailed design"],
+        correct: 2,
+        explanation: "According to the design process outlined in the document, the first step is Need analysis / Problem definition."
+    },
+    {
+        question: "What is the purpose of the conceptual design phase?",
+        options: ["To construct prototypes", "To translate customer requirements into engineering specifications", "To refine and optimize the final design", "To conduct field trials"],
+        correct: 1,
+        explanation: "The document states that in the conceptual design phase, customer requirements are translated into engineering specifications to generate concepts or schemes of design alternatives."
+    },
+    {
+        question: "What is the main purpose of field trials and deployment in the research process?",
+        options: ["To secure funding", "To evaluate the efficacy and safety of new products under real-world conditions", "To generate new research ideas", "To train researchers"],
+        correct: 1,
+        explanation: "The document states that the purpose of field trials and deployment is to evaluate the efficacy and safety of new products under real-world conditions."
+    },
+    {
+        question: "What is one of the drivers of success from the perspective of an individual researcher?",
+        options: ["High salary", "Insatiable quest for knowledge", "Minimal collaboration", "Avoiding experimentation"],
+        correct: 1,
+        explanation: "The document lists 'insatiable quest for knowledge' as one of the drivers of success from the perspective of individual researchers."
+    },
+    {
+        question: "What approach does the document recommend for overcoming the challenge of limited market for military products?",
+        options: ["Increase military spending", "Focus only on civilian products", "Adopt dual-use technology approach", "Outsource all military production"],
+        correct: 2,
+        explanation: "The document suggests adopting a dual-use technology approach to overcome the challenge of limited market for military equipment."
+    },
+    {
+        question: "What is one of China's strategies for technology development according to the case study?",
+        options: ["Avoiding all foreign technology", "Reverse engineering", "Only focusing on indigenous development", "Purchasing all technology from other countries"],
+        correct: 1,
+        explanation: "The document mentions reverse engineering as one of China's strategies for technology development."
+    },
+    {
+        question: "What is the 'triple Helix Model' referred to in the document?",
+        options: ["A model for weapon design", "A strategy for international relations", "A collaboration model between government, industry, and academia", "A model for military hierarchy"],
+        correct: 2,
+        explanation: "While not explicitly defined in the given summary, the triple Helix Model typically refers to a collaboration model between government, industry, and academia in the context of innovation and technology development."
+    },
+    {
+        question: "What does the document suggest as a way to attract and retain talented workforce?",
+        options: ["Reduce funding for research", "Organize talent hunts (like UAV competitions)", "Discourage international collaborations", "Focus only on military personnel"],
+        correct: 1,
+        explanation: "The document suggests organizing talent hunts, such as UAV competitions, as a way to attract and retain talented workforce."
+    },
+    {
+        question: "What is the 'low hanging fruit' principle mentioned in the document?",
+        options: ["A strategy to focus on easy targets in warfare", "An approach to prioritize simple, achievable research objectives", "A method of growing fruit trees", "A financial budgeting technique"],
+        correct: 1,
+        explanation: "While not explicitly defined, the 'low hanging fruit' principle in research typically refers to an approach that prioritizes simpler, more achievable objectives first."
+    },
+    {
+        question: "What does the document suggest about the relationship between universities and defense research in China?",
+        options: ["Universities are not involved in defense research", "Universities play prominent roles in indigenous design and development", "Only military academies are involved in defense research", "Universities only focus on theoretical research"],
+        correct: 1,
+        explanation: "The document states that in China, universities have been playing prominent roles in indigenous UAV design and development."
+    },
+    {
+        question: "What is the phase-gate process mentioned in the document?",
+        options: ["A method for securing research facilities", "A project management approach that breaks projects into phases with reviews at each gate", "A process for manufacturing gates", "A military strategy for securing territories"],
+        correct: 1,
+        explanation: "The document describes the phase-gate process as breaking the project down into phases, with reviews (gates) at the completion of each phase."
+    },
+    {
+        question: "What does the document suggest about the importance of dual-use technologies?",
+        options: ["They are not relevant to defense research", "They can help overcome the challenge of limited market for military products", "They should be avoided in defense research", "They are only useful for civilian applications"],
+        correct: 1,
+        explanation: "The document suggests that adopting a dual-use technology approach can help overcome the challenge of limited market for military equipment."
+    },
+    {
+        question: "What is one of the challenges to effective application of research and technology development mentioned in the document?",
+        options: ["Excess funding", "Too much synergy among services", "Low investment in Research and Development", "Overabundance of skilled researchers"],
+        correct: 2,
+        explanation: "The document lists low investment in Research and Development as one of the challenges to effective application of research and technology development."
+    },
+    {
+        question: "According to the document, what is one way China has used to acquire technology illicitly?",
+        options: ["Open market purchases", "Espionage", "Public research collaborations", "Volunteer technology donations"],
+        correct: 1,
+        explanation: "The document mentions that China has used espionage to illicitly obtain foreign technology."
+    },
+    {
+        question: "What does the document suggest about the role of open-source literature in technology development?",
+        options: ["It's not useful for technology development", "It's only useful for basic research", "It can be a valuable source of information for technology development", "It should be avoided to prevent technology leaks"],
+        correct: 2,
+        explanation: "The document mentions that Chinese physicists utilized open-source literature for initial development of thermonuclear weapons, suggesting its value in technology development."
+    },
+    {
+        question: "What is the 'research for deployment' approach mentioned in the document?",
+        options: ["A strategy to deploy researchers to different locations", "An approach focusing on practical application of research results", "A method for recruiting new researchers", "A technique for organizing research data"],
+        correct: 1,
+        explanation: "While not explicitly defined, 'research for deployment' typically refers to an approach that emphasizes the practical application of research results, as opposed to research for its own sake."
+    },
+    {
+        question: "What does the document suggest about the importance of problem definition in research?",
+        options: ["It's not important in the research process", "It should be done at the end of the research", "Accurate problem definition is crucial for successful research", "Problem definition is only important in applied research"],
+        correct: 2,
+        explanation: "The document lists 'accurate problem definition and clear objectives' as one of the drivers of success from the perspective of individual researchers."
+    },
+    {
+        question: "What is the purpose of monitoring and evaluation in the research process according to the document?",
+        options: ["To increase research funding", "To assess progress and impact of work", "To hire new researchers", "To publish research papers"],
+        correct: 1,
+        explanation: "The document states that monitoring is a systematic and continuous assessment of progress, while evaluation is the assessment of the impact of work and the extent to which stated objectives have been achieved."
+    },
+    {
+        question: "What does the document suggest about the relationship between civil and military research in China?",
+        options: ["They are completely separate", "There is integration between civil and military research", "Only military research is conducted", "Civil research is discouraged"],
+        correct: 1,
+        explanation: "The document mentions 'Civil Military Industrial integration' as one of the drivers of success from the perspective of research organizations in China."
+    },
+    {
+        question: "What is the significance of the 'dual use approach' mentioned in the document?",
+        options: ["It refers to using technology twice", "It allows technology to be used for both military and civilian purposes", "It means using two different technologies for the same purpose", "It refers to collaborative research between two countries"],
+        correct: 1,
+        explanation: "The document suggests adopting a dual-use technology approach, which typically refers to technologies that can be used for both military and civilian purposes."
+    },
+    {
+        question: "What does the document suggest about the role of academia in defense research?",
+        options: ["Academia should not be involved in defense research", "Academia should be the sole conductor of defense research", "Academia should collaborate with industry and military for defense research", "Academia should focus only on theoretical aspects of defense research"],
+        correct: 2,
+        explanation: "The document advocates for the triple Helix Model, which typically involves collaboration between academia, industry, and government (including military) in research and innovation."
+    },
+    {
+        question: "What is the purpose of organizing UAV competitions according to the document?",
+        options: ["To entertain the public", "To test military strategies", "To attract and identify talented individuals", "To sell UAVs"],
+        correct: 2,
+        explanation: "The document mentions organizing talent hunts like UAV competitions as a way to attract and retain talented workforce."
+    },
+    {
+        question: "What does the document suggest about the importance of team composition in research success?",
+        options: ["Team composition is irrelevant", "Only individual skills matter", "Professional qualification and team composition are key to success", "Teams should consist of only senior researchers"],
+        correct: 2,
+        explanation: "The document states that professional qualification and team composition/competence is key to success in research."
+    },
+    {
+        question: "What is the significance of 'milestone-based research funding model' mentioned in the document?",
+        options: ["It provides funding only at the end of the research", "It links funding to the achievement of specific research milestones", "It provides equal funding regardless of progress", "It only funds military research"],
+        correct: 1,
+        explanation: "While not explicitly defined, a milestone-based funding model typically links funding to the achievement of specific research milestones or objectives."
+    },
+    {
+        question: "What does the document suggest about the role of curiosity in research?",
+        options: ["Curiosity should be discouraged", "Curiosity is only important in basic research", "A culture of curiosity and experimentation is important for success", "Curiosity is irrelevant in applied research"],
+        correct: 2,
+        explanation: "The document lists 'culture of curiosity and experimentation' as one of the drivers of success from the perspective of individual researchers."
+    },
+    {
+        question: "What is the purpose of maintaining a database of skills and competencies according to the document?",
+        options: ["To limit collaboration", "To identify and utilize available talent within and outside the country", "To exclude certain researchers", "To increase bureaucracy"],
+        correct: 1,
+        explanation: "The document suggests maintaining a database of skills and competencies within and outside Nigeria as a strategy for managing defense research and development."
+    },
+    {
+        question: "What does the document suggest about the role of design considerations in research?",
+        options: ["Design considerations are not important", "Design considerations should focus only on aesthetics", "Attention to design considerations like producibility and reliability is important", "Design considerations are only relevant in art-related research"],
+        correct: 2,
+        explanation: "The document mentions attention to design considerations (producibility, quality, reliability and design cost) as one of the drivers of success from the perspective of research organizations."
+    },
+    {
+        question: "What is the significance of the 'system engineering approach' mentioned in the document?",
+        options: ["It refers to engineering only computer systems", "It's an approach that considers the entire system and its components in research and development", "It's an approach that focuses only on individual components", "It's an approach used only in software development"],
+        correct: 1,
+        explanation: "While not explicitly defined, a system engineering approach typically refers to considering the entire system and its components in research and development."
+    },
+    {
+        question: "What does the document suggest about the role of international conferences and air shows in technology development?",
+        options: ["They are purely for entertainment", "They are not useful for technology development", "They can be sources for acquiring advanced technologies", "They should be avoided to prevent technology leaks"],
+        correct: 2,
+        explanation: "The document mentions international conferences, air shows and design competitions as ways of acquiring advanced technologies."
+    },
+{
+                question: "Who presented the lecture on Research Innovation and Technology Development for Enhanced Self-Reliance?",
+                options: [
+                    "Air Marshal OC Ubadike", "Air Commodore OC Ubadike", "General OC Ubadike", "Captain OC Ubadike"],
+                correct: 1,
+                explanation: "The lecture was presented by Air Commodore OC Ubadike (NAF/2302), Deputy Director Guidance, Defence Space Administration."
+            }
+];
+
+
+        let currentQuestions = [];
+        let currentQuestion = 0;
+        let score = 0;
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function loadQuestion() {
+            const quizElement = document.getElementById('quiz');
+            const currentQuizData = currentQuestions[currentQuestion];
+
+            let questionHTML = `
+                <div class="question">
+                    <h2>Question ${currentQuestion + 1}/${currentQuestions.length}</h2>
+                    <p>${currentQuizData.question}</p>
+                    <div class="options">
+            `;
+
+            currentQuizData.options.forEach((option, index) => {
+                questionHTML += `
+                    <button onclick="selectOption(${index})">${option}</button>
+                `;
+            });
+
+            questionHTML += `
+                    </div>
+                </div>
+            `;
+
+            quizElement.innerHTML = questionHTML;
+            document.getElementById('explanation').innerHTML = '';
+            document.getElementById('next').style.display = 'none';
+        }
+
+        function selectOption(optionIndex) {
+            const currentQuizData = currentQuestions[currentQuestion];
+            const explanationElement = document.getElementById('explanation');
+            const nextButton = document.getElementById('next');
+
+            if (optionIndex === currentQuizData.correct) {
+                score++;
+                explanationElement.innerHTML = `Correct! ${currentQuizData.explanation}`;
+            } else {
+                explanationElement.innerHTML = `Incorrect. The correct answer is: ${currentQuizData.options[currentQuizData.correct]}. ${currentQuizData.explanation}`;
+            }
+
+            nextButton.style.display = 'block';
+            disableOptions();
+        }
+
+        function disableOptions() {
+            const buttons = document.querySelectorAll('.options button');
+            buttons.forEach(button => {
+                button.disabled = true;
+            });
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+
+            if (currentQuestion < currentQuestions.length) {
+                loadQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            const quizElement = document.getElementById('quiz');
+            const resultElement = document.getElementById('result');
+            const explanationElement = document.getElementById('explanation');
+            const nextButton = document.getElementById('next');
+            const retryButton = document.getElementById('retry');
+
+            quizElement.style.display = 'none';
+            explanationElement.innerHTML = '';
+            resultElement.innerHTML = `You scored ${score} out of ${currentQuestions.length}!`;
+            nextButton.style.display = 'none';
+            retryButton.style.display = 'block';
+        }
+
+        function retryQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            const quizElement = document.getElementById('quiz');
+            const resultElement = document.getElementById('result');
+            const retryButton = document.getElementById('retry');
+
+            quizElement.style.display = 'block';
+            resultElement.innerHTML = '';
+            retryButton.style.display = 'none';
+
+            shuffleArray(quizData);
+            currentQuestions = quizData.slice(0, 10);
+            loadQuestion();
+        }
+
+        shuffleArray(quizData);
+        currentQuestions = quizData.slice(0, 10);
+        loadQuestion();
+
+        document.getElementById('next').addEventListener('click', nextQuestion);
+        document.getElementById('retry').addEventListener('click', retryQuiz);
+    </script>
+
+    <footer>
+        Created by Joshua Oche Emmanuelaudu
+    </footer>
+</body>
+</html>
