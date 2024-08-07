@@ -27,6 +27,10 @@
             font-weight: bold;
             margin-top: 20px;
         }
+        #timer {
+            font-size: 18px;
+            color: red;
+        }
         footer {
             margin-top: 20px;
             text-align: center;
@@ -37,6 +41,7 @@
 <body>
     <h1>Defence Research & Innovation Quiz</h1>
     <div id="quiz"></div>
+    <div id="timer"></div>
     <div id="explanation"></div>
     <div id="result"></div>
     <button id="next" style="display:none;">Next Question</button>
@@ -266,19 +271,750 @@
         correct: 2,
         explanation: "The document mentions international conferences, air shows and design competitions as ways of acquiring advanced technologies."
     },
+    {
+        question: "Who presented the lecture on Research Innovation and Technology Development for Enhanced Self-Reliance?",
+        options: ["Air Marshal OC Ubadike", "Air Commodore OC Ubadike", "General OC Ubadike", "Captain OC Ubadike"],
+        correct: 1,
+        explanation: "The lecture was presented by Air Commodore OC Ubadike (NAF/2302), Deputy Director Guidance, Defence Space Administration."
+    },      
+    {
+    "question": "What is the primary characteristic of basic research?",
+    "options": [
+      "It focuses on immediate practical applications",
+      "It seeks to gain new knowledge of fundamental principles",
+      "It aims to develop new products",
+      "It solves specific industrial problems"
+    ],
+    "correct": 1,
+    "explanation": "Basic research seeks to gain new knowledge and understanding of fundamental principles, without immediate consideration for its practical applications."
+    },
+  {
+    "question": "Which of the following is an example of applied research?",
+    "options": [
+      "Quantum mechanics",
+      "Theory of relativity",
+      "Battery technology",
+      "String theory"
+    ],
+    "correct": 2,
+    "explanation": "Battery technology is given as an example of applied research, which focuses on solving practical problems and developing new technologies."
+  },
+  {
+    "question": "What is the main goal of exploratory research?",
+    "options": [
+      "To define characteristics of a population",
+      "To investigate poorly understood problems",
+      "To establish cause-and-effect relationships",
+      "To develop new products"
+    ],
+    "correct": 1,
+    "explanation": "Exploratory research is conducted to investigate a problem that is not clearly defined, has been under-investigated, or is otherwise poorly understood."
+  },
+  {
+    "question": "Which type of research is used to define characteristics of a population or phenomenon?",
+    "options": [
+      "Exploratory",
+      "Descriptive",
+      "Explanatory",
+      "Applied"
+    ],
+    "correct": 1,
+    "explanation": "Descriptive research is used to define characteristics of a population or phenomenon without necessarily investigating the causes that produce it."
+  },
+  {
+    "question": "What is the primary focus of explanatory research?",
+    "options": [
+      "Describing phenomena",
+      "Exploring new ideas",
+      "Establishing cause-and-effect relationships",
+      "Developing new products"
+    ],
+    "correct": 2,
+    "explanation": "Explanatory research is responsible for establishing cause-and-effect relationships that allow generalizations to be extended to similar realities."
+  },
+  {
+    "question": "Which research method is best suited for extracting the 'why' behind an event or phenomenon?",
+    "options": [
+      "Quantitative",
+      "Qualitative",
+      "Mixed",
+      "Experimental"
+    ],
+    "correct": 1,
+    "explanation": "Qualitative methods are best suited to extracting meaning from an event or phenomenon (the 'why') rather than its cause (the 'how')."
+  },
+  {
+    "question": "What type of research method uses mathematical and statistical tools to measure phenomena?",
+    "options": [
+      "Qualitative",
+      "Quantitative",
+      "Mixed",
+      "Descriptive"
+    ],
+    "correct": 1,
+    "explanation": "Quantitative research studies delve into phenomena through quantitative data collection and using mathematical, statistical, and computer-aided tools to measure them."
+  },
+  {
+    "question": "What is a concept note in the context of research proposals?",
+    "options": [
+      "A full research proposal",
+      "A summary of a proposal with a brief project description",
+      "A detailed budget",
+      "A literature review"
+    ],
+    "correct": 1,
+    "explanation": "A concept note is a summary of a proposal containing a brief description of the idea of the project and the objectives to be pursued."
+  },
+  {
+    "question": "What is the maximum suggested word count for a concept note?",
+    "options": [
+      "1000 words",
+      "1500 words",
+      "2000 words",
+      "2500 words"
+    ],
+    "correct": 1,
+    "explanation": "The document states that the total words for a concept note should not exceed 1500 words max."
+  },
+  {
+    "question": "What is the suggested maximum word count for the 'Background to the Research' section in a concept note?",
+    "options": [
+      "100 words",
+      "150 words",
+      "200 words",
+      "250 words"
+    ],
+    "correct": 2,
+    "explanation": "The guidelines suggest a maximum of 200 words for the 'Background to the Research' section in a concept note."
+  },
+  {
+    "question": "What is the recommended maximum budget for a research proposal according to the document?",
+    "options": [
+      "25 million naira",
+      "50 million naira",
+      "75 million naira",
+      "100 million naira"
+    ],
+    "correct": 1,
+    "explanation": "The document states that the estimated budget should be 50 million naira max."
+  },
+  {
+    "question": "What does the document suggest about the composition of the research team?",
+    "options": [
+      "Only experts should be included",
+      "Only mentees should be included",
+      "A mix of experts, mentees, industrial partners, and gender diversity",
+      "Only industrial partners should be included"
+    ],
+    "correct": 2,
+    "explanation": "The document suggests that the research team mix should compose of experts, mentees, industrial partners, and gender mix."
+  },
+  {
+    "question": "What is the primary purpose of proposal evaluation?",
+    "options": [
+      "To determine the proposer's ability to successfully carry out the project",
+      "To award funding randomly",
+      "To compare different research fields",
+      "To critique the researcher's writing style"
+    ],
+    "correct": 0,
+    "explanation": "Proposal evaluation is the assessment of a proposal to determine the proposer's ability to successfully carry out the proposed project."
+  },
+  {
+    "question": "What is recommended for the proposal review process?",
+    "options": [
+      "Using a single expert",
+      "Using a committee of experts",
+      "Relying solely on automated evaluation",
+      "Skipping the evaluation process entirely"
+    ],
+    "correct": 1,
+    "explanation": "The document states that it's better to use a committee of experts for proposal evaluation."
+  },
+  {
+    "question": "What is monitoring in the context of research projects?",
+    "options": [
+      "A one-time assessment at the end of the project",
+      "A systematic and continuous assessment of progress",
+      "A financial audit",
+      "A literature review"
+    ],
+    "correct": 1,
+    "explanation": "Monitoring is defined as a systematic and continuous assessment of progress."
+  },
+  {
+    "question": "What is the main purpose of field trials and deployment?",
+    "options": [
+      "To evaluate efficacy and safety under real-world conditions",
+      "To complete the research project quickly",
+      "To increase the project budget",
+      "To publish research papers"
+    ],
+    "correct": 0,
+    "explanation": "The purpose of field trials and deployment is to evaluate the efficacy and safety of new products under real-world conditions."
+  },
+  {
+    "question": "What should be produced before the commencement of a project?",
+    "options": [
+      "Final report",
+      "Publication",
+      "M&E Plan",
+      "Patent application"
+    ],
+    "correct": 2,
+    "explanation": "The document states that an M&E (Monitoring and Evaluation) Plan should be produced before commencement of the project."
+  },
+  {
+    "question": "What is a key benefit of conducting field trials before large-scale roll-out?",
+    "options": [
+      "To increase project costs",
+      "To delay the project timeline",
+      "To identify potential problems with products",
+      "To avoid real-world testing"
+    ],
+    "correct": 2,
+    "explanation": "Field trials can help to identify potential problems with products before they become significant issues, prior to large-scale roll-out."
+  },
+  {
+    "question": "Which type of research would a study on the effect of sleep deprivation on mood likely be?",
+    "options": [
+      "Quantitative",
+      "Qualitative",
+      "Basic",
+      "Applied"
+    ],
+    "correct": 1,
+    "explanation": "The document provides an example of studying the effect of sleep deprivation on mood as a qualitative research method."
+  },
+  {
+    "question": "Under which research method would a computer simulation on vehicle strike impacts likely fall?",
+    "options": [
+      "Qualitative",
+      "Quantitative",
+      "Mixed",
+      "Exploratory"
+    ],
+    "correct": 1,
+    "explanation": "The document gives an example of conducting a computer simulation on vehicle strike impacts as quantitative research."
+  },
+  {
+    "question": "What should be included in the references section of a concept note?",
+    "options": [
+      "Only external sources",
+      "At least one publication from a research team member",
+      "Only books",
+      "No references are required"
+    ],
+    "correct": 1,
+    "explanation": "The guidelines state that at least one of the research team members' publications should be cited in the references."
+  },
+  {
+    "question": "What is the purpose of the 'Innovation' section in a concept note?",
+    "options": [
+      "To list all previous research in the field",
+      "To explain how the project differs from other or earlier projects",
+      "To provide a detailed budget",
+      "To describe the research methodology"
+    ],
+    "correct": 1,
+    "explanation": "The Innovation section is meant to explain how different the proposed project is from other or earlier projects."
+  },
+  {
+    "question": "How should a proposal's budget be evaluated?",
+    "options": [
+      "Focus solely on the lowest cost",
+      "Ignore the budget entirely",
+      "Evaluate how the proposed budget aligns with the scope of work",
+      "Always choose the highest budget"
+    ],
+    "correct": 2,
+    "explanation": "The document recommends evaluating how the proposed budget aligns with the scope of work outlined in the proposal."
+  },
+  {
+    "question": "In what order should technical merits and cost/benefits be assessed in a proposal?",
+    "options": [
+      "Cost/benefits first, then technical merits",
+      "Technical merits first, then cost/benefits",
+      "Only assess technical merits",
+      "Only assess cost/benefits"
+    ],
+    "correct": 1,
+    "explanation": "The document states that proposals should be assessed first on technical merits and subsequently on their cost/benefits."
+  },
+  {
+    "question": "What is the purpose of a theoretical framework in research?",
+    "options": [
+      "To provide a detailed budget",
+      "To list all references",
+      "To support the theory of the research study",
+      "To describe the research methodology"
+    ],
+    "correct": 2,
+    "explanation": "A theoretical framework is described as a structure that can hold or support the theory of the research study."
+  },
+  {
+    "question": "What does the document suggest about the estimated budget in a proposal?",
+    "options": [
+      "It should always be the maximum allowed",
+      "It should be as low as possible",
+      "It should be realistic, neither excessive nor underestimated",
+      "It is not important in the evaluation process"
+    ],
+    "correct": 2,
+    "explanation": "The document states that the budget should be realistic, not too excessive or underestimated."
+  },
+  {
+    "question": "What is the primary purpose of the 'Statement of the Problem' section in a concept note?",
+    "options": [
+      "To provide a solution to the research problem",
+      "To describe the research methodology",
+      "To clearly define the research problem being addressed",
+      "To list all references"
+    ],
+    "correct": 2,
+    "explanation": "While not explicitly stated, the 'Statement of the Problem' section typically serves to clearly define the research problem being addressed."
+  },
+  {
+    "question": "What does the document suggest about the call for proposals process?",
+    "options": [
+      "It should always be done in one stage",
+      "It could be done in two stages: Concept Note and Full Proposal",
+      "It should only focus on the budget",
+      "It should not include any specific thematic areas"
+    ],
+    "correct": 1,
+    "explanation": "The document states that the call for proposals could be done in 2 stages: Concept Note and Full Proposal."
+  },
+  {
+    "question": "What should be identified before the commencement of a project for monitoring and evaluation purposes?",
+    "options": [
+      "Only financial indicators",
+      "Project milestones and objectively verifiable Key Performance Indicators",
+      "Publication venues",
+      "Potential problems"
+    ],
+    "correct": 1,
+    "explanation": "The document states that project milestones and objectively verifiable Key Performance Indicators should be identified for monitoring and evaluation purposes."
+  },
+  {
+    "question": "What is the primary difference between monitoring and evaluation in research projects?",
+    "options": [
+      "Monitoring is continuous, while evaluation is done at specific points",
+      "Monitoring is done at the end, while evaluation is continuous",
+      "They are the same thing",
+      "Monitoring is for finances, evaluation is for research quality"
+    ],
+    "correct": 0,
+    "explanation": "The document defines monitoring as a systematic and continuous assessment of progress, while evaluation is the assessment at any point of the impact of work and the extent to which stated objectives have been achieved."
+  },
+  {
+    "question": "Which type of research is driven by curiosity and the pursuit of expanding knowledge?",
+    "options": [
+      "Applied research",
+      "Basic research",
+      "Descriptive research",
+      "Explanatory research"
+    ],
+    "correct": 1,
+    "explanation": "Basic research is described as being driven by curiosity and a pursuit of expanding knowledge, without immediate consideration for practical applications."
+  },
+  {
+    "question": "What is the main focus of applied research?",
+    "options": [
+      "Expanding theoretical knowledge",
+      "Solving practical problems",
+      "Exploring unknown phenomena",
+      "Describing populations"
+    ],
+    "correct": 1,
+    "explanation": "Applied research seeks to solve practical problems and enhance the existing body of knowledge by developing new procedures, products, or methodologies."
+  },
+  {
+    "question": "Which research type relies less on theory and more on data collection to identify patterns?",
+    "options": [
+      "Descriptive",
+      "Explanatory",
+      "Exploratory",
+      "Applied"
+    ],
+    "correct": 2,
+    "explanation": "The document states that exploratory research relies less on theory and more on the collection of data to identify patterns that explain phenomena."
+  },
+  {
+    "question": "What is the maximum suggested word count for the 'Title of Proposed Research' in a concept note?",
+    "options": [
+      "10 words",
+      "20 words",
+      "30 words",
+      "50 words"
+    ],
+    "correct": 1,
+    "explanation": "The guidelines suggest a maximum of 20 words for the 'Title of Proposed Research' section in a concept note."
+  },
+  {
+    "question": "What should be included in the 'Research Team' section of a concept note?",
+    "options": [
+      "Only names and titles",
+      "Only qualifications",
+      "Name, rank, highest qualification, area of specialization, phone number, and email",
+      "Only research experience"
+    ],
+    "correct": 2,
+    "explanation": "The document states that the 'Research Team' section should provide these details for each team member."
+  },
+  {
+    "question": "What is the purpose of the 'Literature Review' section in a concept note?",
+    "options": [
+      "To list all books read by the researcher",
+      "To provide a summary of relevant previous research",
+      "To describe the research methodology",
+      "To outline the project budget"
+    ],
+    "correct": 1,
+    "explanation": "While not explicitly stated, a literature review typically provides a summary of relevant previous research in the field."
+  },
+
+
+  {
+        question: "What is the primary goal of basic research?",
+        options: [
+            "To solve practical problems",
+            "To gain new knowledge of fundamental principles",
+            "To develop new products",
+            "To improve existing solutions"
+        ],
+        correct: 1,
+        explanation: "Basic research seeks to gain new knowledge and understanding of fundamental principles, without immediate consideration for its practical applications. It is driven by curiosity and the pursuit of expanding knowledge."
+    },
+    {
+        question: "Which type of research focuses on solving practical problems?",
+        options: [
+            "Basic research",
+            "Applied research",
+            "Exploratory research",
+            "Descriptive research"
+        ],
+        correct: 1,
+        explanation: "Applied research seeks to solve practical problems and enhance the existing body of knowledge by developing new procedures, products, or methodologies, often with direct, real-world applications."
+    },
+    {
+        question: "What is an example of basic research?",
+        options: [
+            "Development of antibiotics",
+            "Quantum mechanics",
+            "Battery technology",
+            "Sleep deprivation studies"
+        ],
+        correct: 1,
+        explanation: "Quantum mechanics is given as an example of basic research in the document, as it focuses on fundamental principles without immediate practical applications."
+    },
+    {
+        question: "Which type of research is used to define characteristics of a population or phenomenon?",
+        options: [
+            "Exploratory",
+            "Descriptive",
+            "Explanatory",
+            "Applied"
+        ],
+        correct: 1,
+        explanation: "Descriptive research is used to define characteristics of a population or phenomenon without necessarily investigating the causes that produce it."
+    },
+    {
+        question: "What is the primary purpose of exploratory research?",
+        options: [
+            "To establish cause-and-effect relationships",
+            "To investigate poorly understood problems",
+            "To define characteristics of a population",
+            "To develop new products"
+        ],
+        correct: 1,
+        explanation: "Exploratory research is conducted to investigate a problem that is not clearly defined, has been under-investigated, or is otherwise poorly understood."
+    },
+
 {
-                question: "Who presented the lecture on Research Innovation and Technology Development for Enhanced Self-Reliance?",
-                options: [
-                    "Air Marshal OC Ubadike", "Air Commodore OC Ubadike", "General OC Ubadike", "Captain OC Ubadike"],
-                correct: 1,
-                explanation: "The lecture was presented by Air Commodore OC Ubadike (NAF/2302), Deputy Director Guidance, Defence Space Administration."
-            }
+        question: "Which research method is best suited for extracting meaning from an event or phenomenon?",
+        options: [
+            "Quantitative",
+            "Qualitative",
+            "Mixed",
+            "Explanatory"
+        ],
+        correct: 1,
+        explanation: "Qualitative methods are best suited to extracting meaning from an event or phenomenon (the 'why') rather than its cause (the 'how')."
+    },
+    {
+        question: "What type of research establishes cause-and-effect relationships?",
+        options: [
+            "Exploratory",
+            "Descriptive",
+            "Explanatory",
+            "Applied"
+        ],
+        correct: 2,
+        explanation: "Explanatory research is responsible for establishing cause-and-effect relationships that allow generalizations to be extended to similar realities."
+    },
+    {
+        question: "Which research method uses mathematical and statistical tools to measure phenomena?",
+        options: [
+            "Qualitative",
+            "Quantitative",
+            "Mixed",
+            "Descriptive"
+        ],
+        correct: 1,
+        explanation: "Quantitative research studies delve into phenomena through quantitative data collection and using mathematical, statistical, and computer-aided tools to measure them."
+    },
+    {
+        question: "What is a concept note in the context of research proposals?",
+        options: [
+            "A full research proposal",
+            "A summary of a proposal with a brief project description",
+            "A detailed budget",
+            "A literature review"
+        ],
+        correct: 1,
+        explanation: "A concept note is a summary of a proposal containing a brief description of the idea of the project and the objectives to be pursued."
+    },
+    {
+        question: "What is the maximum suggested word count for a concept note?",
+        options: [
+            "1000 words",
+            "1500 words",
+            "2000 words",
+            "2500 words"
+        ],
+        correct: 1,
+        explanation: "The document states that the total words for a concept note should not exceed 1500 words max."
+    },
+    {
+        question: "What is the maximum suggested word count for the 'Background to the Research' section in a concept note?",
+        options: [
+            "100 words",
+            "150 words",
+            "200 words",
+            "250 words"
+        ],
+        correct: 2,
+        explanation: "The guidelines suggest a maximum of 200 words for the 'Background to the Research' section in a concept note."
+    },
+    {
+        question: "What is the suggested maximum budget for a research proposal according to the document?",
+        options: [
+            "25 million naira",
+            "50 million naira",
+            "75 million naira",
+            "100 million naira"
+        ],
+        correct: 1,
+        explanation: "The document states that the estimated budget should be 50 million naira max."
+    },
+    {
+        question: "What does the document suggest about the composition of the research team?",
+        options: [
+            "Only experts should be included",
+            "Only mentees should be included",
+            "A mix of experts, mentees, industrial partners, and gender diversity",
+            "Only industrial partners should be included"
+        ],
+        correct: 2,
+        explanation: "The document suggests that the research team mix should compose of experts, mentees, industrial partners, and gender mix."
+    },
+    {
+        question: "What is the purpose of proposal evaluation?",
+        options: [
+            "To determine the proposer's ability to successfully carry out the project",
+            "To award funding randomly",
+            "To compare different research fields",
+            "To critique the researcher's writing style"
+        ],
+        correct: 0,
+        explanation: "Proposal evaluation is the assessment of a proposal to determine the proposer's ability to successfully carry out the proposed project."
+    },
+    {
+        question: "What is recommended for the proposal review process?",
+        options: [
+            "Using a single expert",
+            "Using a committee of experts",
+            "Relying solely on automated evaluation",
+            "Skipping the evaluation process entirely"
+        ],
+        correct: 1,
+        explanation: "The document states that it's better to use a committee of experts for proposal evaluation."
+    },
+    {
+        question: "What is monitoring in the context of research projects?",
+        options: [
+            "A one-time assessment at the end of the project",
+            "A systematic and continuous assessment of progress",
+            "A financial audit",
+            "A literature review"
+        ],
+        correct: 1,
+        explanation: "Monitoring is defined as a systematic and continuous assessment of progress."
+    },
+    {
+        question: "What is the purpose of field trials and deployment?",
+        options: [
+            "To evaluate efficacy and safety under real-world conditions",
+            "To complete the research project quickly",
+            "To increase the project budget",
+            "To publish research papers"
+        ],
+        correct: 0,
+        explanation: "The purpose of field trials and deployment is to evaluate the efficacy and safety of new products under real-world conditions."
+    },
+    {
+        question: "What should be produced before the commencement of a project?",
+        options: [
+            "Final report",
+            "Publication",
+            "M&E Plan",
+            "Patent application"
+        ],
+        correct: 2,
+        explanation: "The document states that an M&E (Monitoring and Evaluation) Plan should be produced before commencement of the project."
+    },
+    {
+        question: "What is the benefit of field trials before large-scale roll-out?",
+        options: [
+            "To increase project costs",
+            "To delay the project timeline",
+            "To identify potential problems with products",
+            "To avoid real-world testing"
+        ],
+        correct: 2,
+        explanation: "Field trials can help to identify potential problems with products before they become significant issues, prior to large-scale roll-out."
+    },
+    {
+        question: "What type of research would a study on the effect of sleep deprivation on mood likely be?",
+        options: [
+            "Quantitative",
+            "Qualitative",
+            "Basic",
+            "Applied"
+        ],
+        correct: 1,
+        explanation: "The document provides an example of studying the effect of sleep deprivation on mood as a qualitative research method."
+    },
+    {
+        question: "Which type of research would a computer simulation on vehicle strike impacts likely fall under?",
+        options: [
+            "Qualitative",
+            "Quantitative",
+            "Mixed",
+            "Exploratory"
+        ],
+        correct: 1,
+        explanation: "The document gives an example of conducting a computer simulation on vehicle strike impacts as quantitative research."
+    },
+    {
+        question: "What should be included in the references section of a concept note?",
+        options: [
+            "Only external sources",
+            "At least one publication from a research team member",
+            "Only books",
+            "No references are required"
+        ],
+        correct: 1,
+        explanation: "The guidelines state that at least one of the research team members' publications should be cited in the references."
+    },
+    {
+        question: "What is the purpose of the 'Innovation' section in a concept note?",
+        options: [
+            "To list all previous research in the field",
+            "To explain how the project differs from other or earlier projects",
+            "To provide a detailed budget",
+            "To describe the research methodology"
+        ],
+        correct: 1,
+        explanation: "The Innovation section is meant to explain how different the proposed project is from other or earlier projects."
+    },
+    {
+        question: "What is the recommended approach for evaluating a proposal's budget?",
+        options: [
+            "Focus solely on the lowest cost",
+            "Ignore the budget entirely",
+            "Evaluate how the proposed budget aligns with the scope of work",
+            "Always choose the highest budget"
+        ],
+        correct: 2,
+        explanation: "The document recommends evaluating how the proposed budget aligns with the scope of work outlined in the proposal."
+    },
+    {
+        question: "In what order should technical merits and cost/benefits be assessed in a proposal?",
+        options: [
+            "Cost/benefits first, then technical merits",
+            "Technical merits first, then cost/benefits",
+            "Only assess technical merits",
+            "Only assess cost/benefits"
+        ],
+        correct: 1,
+        explanation: "The document states that proposals should be assessed first on technical merits and subsequently on their cost/benefits."
+    },
+    {
+        question: "What is the purpose of a theoretical framework in research?",
+        options: [
+            "To provide a detailed budget",
+            "To list all references",
+            "To support the theory of the research study",
+            "To describe the research methodology"
+        ],
+        correct: 2,
+        explanation: "A theoretical framework is described as a structure that can hold or support the theory of the research study."
+    },
+    {
+        question: "What does the document suggest about the estimated budget in a proposal?",
+        options: [
+            "It should always be the maximum allowed",
+            "It should be as low as possible",
+            "It should be realistic, neither excessive nor underestimated",
+            "It is not important in the evaluation process"
+        ],
+        correct: 2,
+        explanation: "The document states that the budget should be realistic, not too excessive or underestimated."
+    },
+    {
+        question: "What is the purpose of the 'Statement of the Problem' section in a concept note?",
+        options: [
+            "To provide a solution to the research problem",
+            "To describe the research methodology",
+            "To clearly define the research problem being addressed",
+            "To list all references"
+        ],
+        correct: 2,
+        explanation: "While not explicitly stated, the 'Statement of the Problem' section typically serves to clearly define the research problem being addressed."
+    },
+    {
+        question: "What does the document suggest about the call for proposals process?",
+        options: [
+            "It should always be done in one stage",
+            "It could be done in two stages: Concept Note and Full Proposal",
+            "It should only focus on the budget",
+            "It should not include any specific thematic areas"
+        ],
+        correct: 1,
+        explanation: "The document states that the call for proposals could be done in 2 stages: Concept Note and Full Proposal."
+    },
+    {
+        question: "What should be identified before the commencement of a project for monitoring and evaluation purposes?",
+        options: [
+            "Only financial indicators",
+            "Project milestones and objectively verifiable Key Performance Indicators",
+            "Publication venues",
+            "Potential problems"
+        ],
+        correct: 1,
+        explanation: "The document states that project milestones and objectively verifiable Key Performance Indicators should be identified for monitoring and evaluation purposes."
+    },
+
 ];
 
 
         let currentQuestions = [];
         let currentQuestion = 0;
         let score = 0;
+        let incorrectAnswers = [];
+        let timer;
 
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
@@ -312,9 +1048,34 @@
             quizElement.innerHTML = questionHTML;
             document.getElementById('explanation').innerHTML = '';
             document.getElementById('next').style.display = 'none';
+
+            startTimer(10); // 10 seconds countdown
+        }
+
+        function startTimer(duration) {
+            let timerDisplay = document.getElementById('timer');
+            let timeRemaining = duration;
+
+            timerDisplay.innerHTML = `Time left: ${timeRemaining} seconds`;
+            
+            timer = setInterval(() => {
+                timeRemaining--;
+                timerDisplay.innerHTML = `Time left: ${timeRemaining} seconds`;
+
+                if (timeRemaining <= 0) {
+                    clearInterval(timer);
+                    handleTimeOut();
+                }
+            }, 1000);
+        }
+
+        function handleTimeOut() {
+            selectOption(-1); // Simulate an incorrect answer due to timeout
         }
 
         function selectOption(optionIndex) {
+            clearInterval(timer);
+
             const currentQuizData = currentQuestions[currentQuestion];
             const explanationElement = document.getElementById('explanation');
             const nextButton = document.getElementById('next');
@@ -324,6 +1085,13 @@
                 explanationElement.innerHTML = `Correct! ${currentQuizData.explanation}`;
             } else {
                 explanationElement.innerHTML = `Incorrect. The correct answer is: ${currentQuizData.options[currentQuizData.correct]}. ${currentQuizData.explanation}`;
+                if (optionIndex !== -1) {
+                    incorrectAnswers.push({
+                        question: currentQuizData.question,
+                        correctAnswer: currentQuizData.options[currentQuizData.correct],
+                        selectedAnswer: currentQuizData.options[optionIndex]
+                    });
+                }
             }
 
             nextButton.style.display = 'block';
@@ -356,7 +1124,20 @@
 
             quizElement.style.display = 'none';
             explanationElement.innerHTML = '';
-            resultElement.innerHTML = `You scored ${score} out of ${currentQuestions.length}!`;
+
+            let incorrectListHTML = '<h3>Incorrect Answers:</h3><ul>';
+            incorrectAnswers.forEach(answer => {
+                incorrectListHTML += `
+                    <li>
+                        <strong>Question:</strong> ${answer.question}<br>
+                        <strong>Selected Answer:</strong> ${answer.selectedAnswer}<br>
+                        <strong>Correct Answer:</strong> ${answer.correctAnswer}
+                    </li>
+                `;
+            });
+            incorrectListHTML += '</ul>';
+
+            resultElement.innerHTML = `You scored ${score} out of ${currentQuestions.length}! ${incorrectListHTML}`;
             nextButton.style.display = 'none';
             retryButton.style.display = 'block';
         }
@@ -364,6 +1145,7 @@
         function retryQuiz() {
             currentQuestion = 0;
             score = 0;
+            incorrectAnswers = [];
             const quizElement = document.getElementById('quiz');
             const resultElement = document.getElementById('result');
             const retryButton = document.getElementById('retry');
@@ -373,12 +1155,12 @@
             retryButton.style.display = 'none';
 
             shuffleArray(quizData);
-            currentQuestions = quizData.slice(0, 10);
+            currentQuestions = quizData.slice(0, 15); // Increased to 15 questions
             loadQuestion();
         }
 
         shuffleArray(quizData);
-        currentQuestions = quizData.slice(0, 10);
+        currentQuestions = quizData.slice(0, 15); // Increased to 15 questions
         loadQuestion();
 
         document.getElementById('next').addEventListener('click', nextQuestion);
