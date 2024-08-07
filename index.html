@@ -1009,166 +1009,166 @@
 
 ];
 
+let currentQuestions = [];
+let currentQuestion = 0;
+let score = 0;
+let incorrectAnswers = [];
+let timer;
 
-        let currentQuestions = [];
-        let currentQuestion = 0;
-        let score = 0;
-        let incorrectAnswers = [];
-        let timer;
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
 
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-        }
+function loadQuestion() {
+    const quizElement = document.getElementById('quiz');
+    const currentQuizData = currentQuestions[currentQuestion];
 
-        function loadQuestion() {
-            const quizElement = document.getElementById('quiz');
-            const currentQuizData = currentQuestions[currentQuestion];
+    let questionHTML = `
+        <div class="question">
+            <h2>Question ${currentQuestion + 1}/${currentQuestions.length}</h2>
+            <p>${currentQuizData.question}</p>
+            <div class="options">
+    `;
 
-            let questionHTML = `
-                <div class="question">
-                    <h2>Question ${currentQuestion + 1}/${currentQuestions.length}</h2>
-                    <p>${currentQuizData.question}</p>
-                    <div class="options">
-            `;
+    currentQuizData.options.forEach((option, index) => {
+        questionHTML += `
+            <button onclick="selectOption(${index})">${option}</button>
+        `;
+    });
 
-            currentQuizData.options.forEach((option, index) => {
-                questionHTML += `
-                    <button onclick="selectOption(${index})">${option}</button>
-                `;
-            });
+    questionHTML += `
+            </div>
+        </div>
+    `;
 
-            questionHTML += `
-                    </div>
-                </div>
-            `;
+    quizElement.innerHTML = questionHTML;
+    document.getElementById('explanation').innerHTML = '';
+    document.getElementById('next').style.display = 'none';
 
-            quizElement.innerHTML = questionHTML;
-            document.getElementById('explanation').innerHTML = '';
-            document.getElementById('next').style.display = 'none';
+    startTimer(30); // Updated to 30 seconds countdown
+}
 
-            startTimer(10); // 10 seconds countdown
-        }
+function startTimer(duration) {
+    let timerDisplay = document.getElementById('timer');
+    let timeRemaining = duration;
 
-        function startTimer(duration) {
-            let timerDisplay = document.getElementById('timer');
-            let timeRemaining = duration;
+    timerDisplay.innerHTML = `Time left: ${timeRemaining} seconds`;
 
-            timerDisplay.innerHTML = `Time left: ${timeRemaining} seconds`;
-            
-            timer = setInterval(() => {
-                timeRemaining--;
-                timerDisplay.innerHTML = `Time left: ${timeRemaining} seconds`;
+    timer = setInterval(() => {
+        timeRemaining--;
+        timerDisplay.innerHTML = `Time left: ${timeRemaining} seconds`;
 
-                if (timeRemaining <= 0) {
-                    clearInterval(timer);
-                    handleTimeOut();
-                }
-            }, 1000);
-        }
-
-        function handleTimeOut() {
-            selectOption(-1); // Simulate an incorrect answer due to timeout
-        }
-
-        function selectOption(optionIndex) {
+        if (timeRemaining <= 0) {
             clearInterval(timer);
-
-            const currentQuizData = currentQuestions[currentQuestion];
-            const explanationElement = document.getElementById('explanation');
-            const nextButton = document.getElementById('next');
-
-            if (optionIndex === currentQuizData.correct) {
-                score++;
-                explanationElement.innerHTML = `Correct! ${currentQuizData.explanation}`;
-            } else {
-                explanationElement.innerHTML = `Incorrect. The correct answer is: ${currentQuizData.options[currentQuizData.correct]}. ${currentQuizData.explanation}`;
-                if (optionIndex !== -1) {
-                    incorrectAnswers.push({
-                        question: currentQuizData.question,
-                        correctAnswer: currentQuizData.options[currentQuizData.correct],
-                        selectedAnswer: currentQuizData.options[optionIndex]
-                    });
-                }
-            }
-
-            nextButton.style.display = 'block';
-            disableOptions();
+            handleTimeOut();
         }
+    }, 1000);
+}
 
-        function disableOptions() {
-            const buttons = document.querySelectorAll('.options button');
-            buttons.forEach(button => {
-                button.disabled = true;
+function handleTimeOut() {
+    selectOption(-1); // Simulate an incorrect answer due to timeout
+}
+
+function selectOption(optionIndex) {
+    clearInterval(timer);
+
+    const currentQuizData = currentQuestions[currentQuestion];
+    const explanationElement = document.getElementById('explanation');
+    const nextButton = document.getElementById('next');
+
+    if (optionIndex === currentQuizData.correct) {
+        score++;
+        explanationElement.innerHTML = `Correct! ${currentQuizData.explanation}`;
+    } else {
+        explanationElement.innerHTML = `Incorrect. The correct answer is: ${currentQuizData.options[currentQuizData.correct]}. ${currentQuizData.explanation}`;
+        if (optionIndex !== -1) {
+            incorrectAnswers.push({
+                question: currentQuizData.question,
+                correctAnswer: currentQuizData.options[currentQuizData.correct],
+                selectedAnswer: currentQuizData.options[optionIndex]
             });
         }
+    }
 
-        function nextQuestion() {
-            currentQuestion++;
+    nextButton.style.display = 'block';
+    disableOptions();
+}
 
-            if (currentQuestion < currentQuestions.length) {
-                loadQuestion();
-            } else {
-                showResult();
-            }
-        }
+function disableOptions() {
+    const buttons = document.querySelectorAll('.options button');
+    buttons.forEach(button => {
+        button.disabled = true;
+    });
+}
 
-        function showResult() {
-            const quizElement = document.getElementById('quiz');
-            const resultElement = document.getElementById('result');
-            const explanationElement = document.getElementById('explanation');
-            const nextButton = document.getElementById('next');
-            const retryButton = document.getElementById('retry');
+function nextQuestion() {
+    currentQuestion++;
 
-            quizElement.style.display = 'none';
-            explanationElement.innerHTML = '';
-
-            let incorrectListHTML = '<h3>Incorrect Answers:</h3><ul>';
-            incorrectAnswers.forEach(answer => {
-                incorrectListHTML += `
-                    <li>
-                        <strong>Question:</strong> ${answer.question}<br>
-                        <strong>Selected Answer:</strong> ${answer.selectedAnswer}<br>
-                        <strong>Correct Answer:</strong> ${answer.correctAnswer}
-                    </li>
-                `;
-            });
-            incorrectListHTML += '</ul>';
-
-            resultElement.innerHTML = `You scored ${score} out of ${currentQuestions.length}! ${incorrectListHTML}`;
-            nextButton.style.display = 'none';
-            retryButton.style.display = 'block';
-        }
-
-        function retryQuiz() {
-            currentQuestion = 0;
-            score = 0;
-            incorrectAnswers = [];
-            const quizElement = document.getElementById('quiz');
-            const resultElement = document.getElementById('result');
-            const retryButton = document.getElementById('retry');
-
-            quizElement.style.display = 'block';
-            resultElement.innerHTML = '';
-            retryButton.style.display = 'none';
-
-            shuffleArray(quizData);
-            currentQuestions = quizData.slice(0, 15); // Increased to 15 questions
-            loadQuestion();
-        }
-
-        shuffleArray(quizData);
-        currentQuestions = quizData.slice(0, 15); // Increased to 15 questions
+    if (currentQuestion < currentQuestions.length) {
         loadQuestion();
+    } else {
+        showResult();
+    }
+}
 
-        document.getElementById('next').addEventListener('click', nextQuestion);
-        document.getElementById('retry').addEventListener('click', retryQuiz);
-    </script>
+function showResult() {
+    const quizElement = document.getElementById('quiz');
+    const resultElement = document.getElementById('result');
+    const explanationElement = document.getElementById('explanation');
+    const nextButton = document.getElementById('next');
+    const retryButton = document.getElementById('retry');
+
+    quizElement.style.display = 'none';
+    explanationElement.innerHTML = '';
+
+    let incorrectListHTML = '<h3>Incorrect Answers:</h3><ul>';
+    incorrectAnswers.forEach(answer => {
+        incorrectListHTML += `
+            <li>
+                <strong>Question:</strong> ${answer.question}<br>
+                <strong>Selected Answer:</strong> ${answer.selectedAnswer}<br>
+                <strong>Correct Answer:</strong> ${answer.correctAnswer}
+            </li>
+        `;
+    });
+    incorrectListHTML += '</ul>';
+
+    resultElement.innerHTML = `You scored ${score} out of ${currentQuestions.length}! ${incorrectListHTML}`;
+    nextButton.style.display = 'none';
+    retryButton.style.display = 'block';
+}
+
+function retryQuiz() {
+    currentQuestion = 0;
+    score = 0;
+    incorrectAnswers = [];
+    const quizElement = document.getElementById('quiz');
+    const resultElement = document.getElementById('result');
+    const retryButton = document.getElementById('retry');
+
+    quizElement.style.display = 'block';
+    resultElement.innerHTML = '';
+    retryButton.style.display = 'none';
+
+    shuffleArray(quizData);
+    currentQuestions = quizData.slice(0, 15); // Increased to 15 questions
+    loadQuestion();
+}
+
+shuffleArray(quizData);
+currentQuestions = quizData.slice(0, 15); // Increased to 15 questions
+loadQuestion();
+
+document.getElementById('next').addEventListener('click', nextQuestion);
+document.getElementById('retry').addEventListener('click', retryQuiz);
+</script>
 
     <footer>
         Created by Joshua Oche Emmanuelaudu
     </footer>
 </body>
 </html>
+
